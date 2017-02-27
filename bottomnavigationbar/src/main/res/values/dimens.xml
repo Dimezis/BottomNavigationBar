@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_bar_item_top_padding">6dp</dimen>
+    <dimen name="bottom_bar_item_bottom_padding">8dp</dimen>
+    <dimen name="bottom_bar_item_side_padding">10dp</dimen>
+
+    <dimen name="bottom_bar_icon_size">24dp</dimen>
+    <dimen name="bottom_bar_icon_top_margin_inactive">2dp</dimen>
+    <dimen name="bottom_bar_icon_top_margin_active">0dp</dimen>
+
+    <dimen name="bottom_bar_title_top_margin">4dp</dimen>
+    <dimen name="bottom_bar_title_inactive_font_size">12sp</dimen>
+    <dimen name="bottom_bar_title_active_font_size">10sp</dimen>
+
+    <dimen name="bottom_bar_eleveation">8dp</dimen>
+</resources>
