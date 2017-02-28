@@ -16,11 +16,9 @@ import static android.view.View.GONE;
 import static com.eightbitlab.bottomnavigationbar.TabAnimator.animateTranslationY;
 
 class Tab {
-    private final int position;
     private final BottomBarItem item;
     private final View root;
     private final TextView title;
-    private final ImageView icon;
     private final Context context;
 
     private final int activeTopMargin;
@@ -29,15 +27,14 @@ class Tab {
     private final int activeColor;
     @ColorInt
     private final int inactiveColor;
-    private Drawable iconDrawable;
+    private final Drawable iconDrawable;
 
-    Tab(@NonNull BottomBarItem item, @NonNull View root, int position) {
+    Tab(@NonNull BottomBarItem item, @NonNull View root) {
         this.item = item;
         this.root = root;
-        this.position = position;
-        title = (TextView) root.findViewById(R.id.tab_title);
-        icon = (ImageView) root.findViewById(R.id.tab_icon);
         context = root.getContext();
+        title = (TextView) root.findViewById(R.id.tab_title);
+        ImageView icon = (ImageView) root.findViewById(R.id.tab_icon);
 
         activeTopMargin = getSizeInPx(R.dimen.bottom_bar_icon_top_margin_active);
         inactiveTopMargin = getSizeInPx(R.dimen.bottom_bar_icon_top_margin_inactive);
@@ -46,7 +43,13 @@ class Tab {
         //wrapped for tinting
         iconDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, item.icon)).mutate();
 
-        setUp();
+        setupIcon(icon);
+        setupTitle();
+    }
+
+    private void setupIcon(@NonNull ImageView icon) {
+        DrawableCompat.setTint(iconDrawable, inactiveColor);
+        icon.setImageDrawable(iconDrawable);
     }
 
     private int getSizeInPx(@DimenRes int res) {
@@ -75,38 +78,12 @@ class Tab {
         }
     }
 
-    int getPosition() {
-        return position;
-    }
-
-    @NonNull
-    BottomBarItem getItem() {
-        return item;
-    }
-
-    @NonNull
-    View getRoot() {
-        return root;
-    }
-
-    @NonNull
-    TextView getTitle() {
-        return title;
-    }
-
-    @NonNull
-    ImageView getIcon() {
-        return icon;
-    }
-
-    private void setUp() {
+    private void setupTitle() {
         if (item.title == 0) {
             title.setVisibility(GONE);
         } else {
             title.setText(item.title);
         }
-        DrawableCompat.setTint(iconDrawable, inactiveColor);
-        icon.setImageDrawable(iconDrawable);
         title.setTextColor(inactiveColor);
     }
 

@@ -108,7 +108,7 @@ public class BottomNavigationBar extends LinearLayout {
 
     @NonNull
     private Tab createTab(@NonNull BottomBarItem item, @NonNull View tabView, final int position) {
-        Tab tab = new Tab(item, tabView, position);
+        Tab tab = new Tab(item, tabView);
         tabView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
