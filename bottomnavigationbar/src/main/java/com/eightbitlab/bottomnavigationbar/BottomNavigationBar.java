@@ -17,10 +17,6 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO:
-//clean up
-//resolve title padding issue
-//test on 4.1, 4.4, 5, 5, 6 and 7
 public class BottomNavigationBar extends LinearLayout {
 
     private List<Tab> tabs = new ArrayList<>(5);
@@ -126,6 +122,7 @@ public class BottomNavigationBar extends LinearLayout {
         int minHeight = getResources().getDimensionPixelSize(R.dimen.bottom_bar_min_height);
         setMinimumHeight(minHeight);
         setOrientation(HORIZONTAL);
+
         if (getBackground() == null) {
             setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.white));
         }
@@ -159,11 +156,11 @@ public class BottomNavigationBar extends LinearLayout {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
-    interface OnTabClickListener {
+    public interface OnTabClickListener {
         void onClick(int position);
     }
 
-    interface ReselectListener {
+    public interface ReselectListener {
         void onReselect(int position);
     }
 }
