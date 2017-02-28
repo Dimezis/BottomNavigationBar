@@ -137,7 +137,7 @@ public class BottomNavigationBar extends LinearLayout {
     }
 
     private void setBackgroundForEditMode() {
-        if (isInEditMode()) {
+        if (isInEditMode() && getBackground() == null) {
             setBackgroundColor(0xffffffff);
         }
     }
