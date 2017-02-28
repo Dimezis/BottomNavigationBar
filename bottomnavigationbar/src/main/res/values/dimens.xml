@@ -12,5 +12,6 @@
     <dimen name="bottom_bar_title_inactive_font_size">12sp</dimen>
     <dimen name="bottom_bar_title_active_font_size">10sp</dimen>
 
-    <dimen name="bottom_bar_eleveation">8dp</dimen>
+    <dimen name="bottom_bar_elevation">8dp</dimen>
+    <dimen name="bottom_bar_min_height">52dp</dimen>
 </resources>

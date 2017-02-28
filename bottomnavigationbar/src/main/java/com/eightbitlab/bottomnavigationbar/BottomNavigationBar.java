@@ -23,8 +23,6 @@ import java.util.List;
 //test on 4.1, 4.4, 5, 5, 6 and 7
 public class BottomNavigationBar extends LinearLayout {
 
-    public static final String TAG = "LOL";
-
     private List<Tab> tabs = new ArrayList<>(5);
     private LayoutInflater inflater = LayoutInflater.from(getContext());
     private int selectedPosition;
@@ -84,7 +82,7 @@ public class BottomNavigationBar extends LinearLayout {
         int[] set = {android.R.attr.elevation};
         TypedArray a = context.obtainStyledAttributes(attrs, set);
 
-        int defaultElevation = getResources().getDimensionPixelSize(R.dimen.bottom_bar_eleveation);
+        int defaultElevation = getResources().getDimensionPixelSize(R.dimen.bottom_bar_elevation);
         float elevation = a.getDimensionPixelSize(0, defaultElevation);
         ViewCompat.setElevation(this, elevation);
 
@@ -125,7 +123,8 @@ public class BottomNavigationBar extends LinearLayout {
     }
 
     private void init() {
-        setBackgroundForEditMode();
+        int minHeight = getResources().getDimensionPixelSize(R.dimen.bottom_bar_min_height);
+        setMinimumHeight(minHeight);
         setOrientation(HORIZONTAL);
         if (getBackground() == null) {
             setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.white));
@@ -133,12 +132,6 @@ public class BottomNavigationBar extends LinearLayout {
 
         if (isLollipop()) {
             setOutlineProvider(ViewOutlineProvider.BOUNDS);
-        }
-    }
-
-    private void setBackgroundForEditMode() {
-        if (isInEditMode() && getBackground() == null) {
-            setBackgroundColor(0xffffffff);
         }
     }
 
