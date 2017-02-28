@@ -9,12 +9,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.View;
-import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import static android.view.View.GONE;
-import static com.eightbitlab.bottomnavigationbar.TabAnimator.animateMargin;
+import static com.eightbitlab.bottomnavigationbar.TabAnimator.animateTranslationY;
 
 class Tab {
     private final int position;
@@ -59,17 +58,9 @@ class Tab {
         DrawableCompat.setTint(iconDrawable, activeColor);
 
         if (animate) {
-            animateMargin(icon, activeTopMargin);
+            animateTranslationY(root, activeTopMargin);
         } else {
-            setIconTopMargin(activeTopMargin);
-        }
-    }
-
-    private void setIconTopMargin(int value) {
-        MarginLayoutParams params = (MarginLayoutParams) icon.getLayoutParams();
-        if (params.topMargin != value) {
-            params.topMargin = value;
-            icon.requestLayout();
+            root.setTranslationY(activeTopMargin);
         }
     }
 
@@ -78,9 +69,9 @@ class Tab {
         DrawableCompat.setTint(iconDrawable, inactiveColor);
 
         if (animate) {
-            animateMargin(icon, inactiveTopMargin);
+            animateTranslationY(root, inactiveTopMargin);
         } else {
-            setIconTopMargin(inactiveTopMargin);
+            root.setTranslationY(inactiveTopMargin);
         }
     }
 
