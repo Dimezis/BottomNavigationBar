@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomNavigationBar">
+        <attr name="inactiveTabColor" format="color"/>
+        <attr name="activeTabColor" format="color"/>
+    </declare-styleable>
+</resources>

@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcelable;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
@@ -19,8 +22,12 @@ import java.util.List;
 
 public class BottomNavigationBar extends LinearLayout {
 
-    private List<Tab> tabs = new ArrayList<>(5);
-    private LayoutInflater inflater = LayoutInflater.from(getContext());
+    private final List<Tab> tabs = new ArrayList<>(5);
+    private final LayoutInflater inflater = LayoutInflater.from(getContext());
+    @ColorInt
+    private int inactiveColorId;
+    @ColorInt
+    private int activeColorId;
     private int selectedPosition;
 
     private OnTabClickListener userClickListener = new OnTabClickListener() {
@@ -57,7 +64,22 @@ public class BottomNavigationBar extends LinearLayout {
     public BottomNavigationBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initFromAttributes(context, attrs);
+        initFromCustomAttributes(context, attrs);
         init();
+    }
+
+    private void initFromCustomAttributes(@NonNull Context context, @NonNull AttributeSet attrs) {
+        final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationBar);
+        int defaultInactiveColor = colorToInt(R.color.bottomBarDefaultTextColor);
+        int defaultActiveColor = colorToInt(R.color.colorPrimary);
+        inactiveColorId = array.getColor(R.styleable.BottomNavigationBar_inactiveTabColor, defaultInactiveColor);
+        activeColorId = array.getColor(R.styleable.BottomNavigationBar_activeTabColor, defaultActiveColor);
+        array.recycle();
+    }
+
+    @ColorInt
+    private int colorToInt(@ColorRes int color) {
+        return ContextCompat.getColor(getContext(), color);
     }
 
     @NonNull
@@ -74,7 +96,7 @@ public class BottomNavigationBar extends LinearLayout {
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void initFromAttributes(Context context, AttributeSet attrs) {
+    private void initFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
         int[] set = {android.R.attr.elevation};
         TypedArray a = context.obtainStyledAttributes(attrs, set);
 
@@ -108,7 +130,7 @@ public class BottomNavigationBar extends LinearLayout {
 
     @NonNull
     private Tab createTab(@NonNull BottomBarItem item, @NonNull View tabView, final int position) {
-        Tab tab = new Tab(item, tabView);
+        Tab tab = new Tab(item, tabView, activeColorId, inactiveColorId);
         tabView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

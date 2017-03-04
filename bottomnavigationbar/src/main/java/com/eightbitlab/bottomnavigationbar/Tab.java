@@ -3,7 +3,6 @@ package com.eightbitlab.bottomnavigationbar;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -29,7 +28,7 @@ class Tab {
     private final int inactiveColor;
     private final Drawable iconDrawable;
 
-    Tab(@NonNull BottomBarItem item, @NonNull View root) {
+    Tab(@NonNull BottomBarItem item, @NonNull View root, @ColorInt int activeColor, @ColorInt int inactiveColor) {
         this.item = item;
         this.root = root;
         context = root.getContext();
@@ -38,8 +37,8 @@ class Tab {
 
         activeTopMargin = getSizeInPx(R.dimen.bottom_bar_icon_top_margin_active);
         inactiveTopMargin = getSizeInPx(R.dimen.bottom_bar_icon_top_margin_inactive);
-        activeColor = colorToInt(item.activeColor);
-        inactiveColor = colorToInt(item.inactiveColor);
+        this.activeColor = activeColor;
+        this.inactiveColor = inactiveColor;
         //wrapped for tinting
         iconDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, item.icon)).mutate();
 
@@ -85,10 +84,5 @@ class Tab {
             title.setText(item.title);
         }
         title.setTextColor(inactiveColor);
-    }
-
-    @ColorInt
-    private int colorToInt(@ColorRes int color) {
-        return ContextCompat.getColor(context, color);
     }
 }
