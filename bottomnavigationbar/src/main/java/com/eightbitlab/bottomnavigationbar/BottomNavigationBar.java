@@ -29,6 +29,7 @@ public class BottomNavigationBar extends LinearLayout {
     @ColorInt
     private int activeColorId;
     private int selectedPosition;
+    private boolean shouldTriggerListenerOnLayout;
 
     private OnSelectListener onSelectListener = new OnSelectListener() {
         @Override
@@ -40,7 +41,6 @@ public class BottomNavigationBar extends LinearLayout {
         public void onReselect(int position) {
         }
     };
-    private boolean shouldTriggerListenerOnLayout;
 
     public BottomNavigationBar(Context context) {
         this(context, null);
@@ -105,6 +105,7 @@ public class BottomNavigationBar extends LinearLayout {
 
     /**
      * Enables or disables automatic invocation of click listener during layout.
+     * Disabled by default.
      * @param shouldTrigger indicates whether selection listener should be triggered
      */
     public void setTriggerListenerOnLayout(boolean shouldTrigger) {
