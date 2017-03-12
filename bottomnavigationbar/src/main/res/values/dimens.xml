@@ -10,7 +10,7 @@
 
     <dimen name="bottom_bar_title_top_margin">4dp</dimen>
     <dimen name="bottom_bar_title_inactive_font_size">12sp</dimen>
-    <dimen name="bottom_bar_title_active_font_size">10sp</dimen>
+    <dimen name="bottom_bar_title_active_font_size">14sp</dimen>
 
     <dimen name="bottom_bar_elevation">8dp</dimen>
     <dimen name="bottom_bar_min_height">52dp</dimen>
