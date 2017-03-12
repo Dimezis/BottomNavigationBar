@@ -24,7 +24,8 @@
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:activeTabColor="@color/colorPrimary"
+        android:background="@color/colorPrimary"
+        app:activeTabColor="@android:color/white"
         app:inactiveTabColor="@color/bottomBarDefaultTextColor"/>
 
 </LinearLayout>

@@ -1,5 +1,8 @@
 package com.eightbitlab.test;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         BottomBarItem item = BottomBarItem.builder()
                 .iconId(R.drawable.test_icon)
+                .title(R.string.title)
                 .build();
 
         bottomNavigationBar
@@ -39,9 +43,34 @@ public class MainActivity extends AppCompatActivity {
                 showContent(position, textView);
             }
         });
+
+        if (atLeastKitkat() && isInPortrait()) {
+            bottomNavigationBar.setPadding(0, 0, 0, getSystemNavigationBarHeight());
+        }
+    }
+
+    private boolean isInPortrait() {
+        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    }
+
+    private boolean atLeastKitkat() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
 
     void showContent(int position, @NonNull TextView textView) {
         textView.setText("Tab " + position + " selected");
+    }
+
+    private int getSystemNavigationBarHeight() {
+        Resources res = getResources();
+
+        int identifier = res.getIdentifier("navigation_bar_height", "dimen", "android");
+        int height = 0;
+
+        if (identifier > 0) {
+            height = res.getDimensionPixelSize(identifier);
+        }
+
+        return height;
     }
 }

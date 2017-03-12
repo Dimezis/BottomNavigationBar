@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SimpleBottomNavigationBar</string>
+    <string name="title">Title</string>
 </resources>
