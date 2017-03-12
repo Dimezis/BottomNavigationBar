@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 .addTab(item)
                 .addTab(item);
 
-        bottomNavigationBar.setOnTabClickListener(new BottomNavigationBar.OnTabClickListener() {
+        bottomNavigationBar.setOnTabClickListener(new BottomNavigationBar.OnSelectListener() {
             @Override
             public void onClick(int position) {
                 showContent(position, textView);
