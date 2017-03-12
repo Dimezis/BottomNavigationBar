@@ -30,28 +30,17 @@ public class BottomNavigationBar extends LinearLayout {
     private int activeColorId;
     private int selectedPosition;
 
-    private OnTabClickListener userClickListener = new OnTabClickListener() {
+    private OnSelectListener onSelectListener = new OnSelectListener() {
         @Override
         public void onClick(int position) {
         }
     };
-    private ReselectListener reselectListener = new ReselectListener() {
+    private OnReselectListener onReselectListener = new OnReselectListener() {
         @Override
         public void onReselect(int position) {
         }
     };
-
-    private OnTabClickListener internalListener = new OnTabClickListener() {
-        @Override
-        public void onClick(int position) {
-            if (position == selectedPosition) {
-                reselectListener.onReselect(position);
-                return;
-            }
-            selectTab(position, true);
-            userClickListener.onClick(position);
-        }
-    };
+    private boolean shouldTriggerListenerOnLayout;
 
     public BottomNavigationBar(Context context) {
         this(context, null);
@@ -87,12 +76,39 @@ public class BottomNavigationBar extends LinearLayout {
         return tabs.get(selectedPosition);
     }
 
+    /**
+     * Selects tab, not triggering listener
+     * @param position position to select
+     * @param animate indicates wheter selection should  be animated
+     */
     public void selectTab(int position, boolean animate) {
         if (position != selectedPosition) {
             getCurrent().deselect(animate);
             selectedPosition = position;
             getCurrent().select(animate);
         }
+    }
+
+    /**
+     * Selects tab, triggering listener
+     * @param position position to select
+     * @param animate indicates wheter selection should  be animated
+     */
+    public void selectTabAndTriggerListener(int position, boolean animate) {
+        selectTab(position, animate);
+        if (position != selectedPosition) {
+            onSelectListener.onClick(position);
+        } else {
+            onReselectListener.onReselect(position);
+        }
+    }
+
+    /**
+     * Enables or disables automatic invocation of click listener during layout.
+     * @param shouldTrigger indicates whether selection listener should be triggered
+     */
+    public void setTriggerListenerOnLayout(boolean shouldTrigger) {
+        shouldTriggerListenerOnLayout = shouldTrigger;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -113,19 +129,15 @@ public class BottomNavigationBar extends LinearLayout {
         int position = tabs.size();
         Tab tab = createTab(item, tabView, position);
         tabs.add(tab);
-        //initial selection
-        if (position == 0) {
-            getCurrent().select(false);
-        }
         return this;
     }
 
-    public void setOnTabClickListener(@NonNull OnTabClickListener listener) {
-        userClickListener = listener;
+    public void setOnTabClickListener(@NonNull OnSelectListener listener) {
+        onSelectListener = listener;
     }
 
-    public void setOnReselectListener(@NonNull ReselectListener listener) {
-        reselectListener = listener;
+    public void setOnReselectListener(@NonNull OnReselectListener listener) {
+        onReselectListener = listener;
     }
 
     @NonNull
@@ -134,7 +146,12 @@ public class BottomNavigationBar extends LinearLayout {
         tabView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                internalListener.onClick(position);
+                if (position == selectedPosition) {
+                    onReselectListener.onReselect(position);
+                    return;
+                }
+                selectTab(position, true);
+                onSelectListener.onClick(position);
             }
         });
         return tab;
@@ -155,6 +172,15 @@ public class BottomNavigationBar extends LinearLayout {
     }
 
     @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        getCurrent().select(false);
+        if (shouldTriggerListenerOnLayout) {
+            onSelectListener.onClick(selectedPosition);
+        }
+    }
+
+    @Override
     protected void onRestoreInstanceState(Parcelable state) {
         if (!(state instanceof SavedState)) {
             super.onRestoreInstanceState(state);
@@ -162,7 +188,7 @@ public class BottomNavigationBar extends LinearLayout {
         }
 
         SavedState ss = (SavedState) state;
-        selectTab(ss.selectedPosition, false);
+        selectedPosition = ss.selectedPosition;
         super.onRestoreInstanceState(ss.getSuperState());
     }
 
@@ -178,11 +204,11 @@ public class BottomNavigationBar extends LinearLayout {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
-    public interface OnTabClickListener {
+    public interface OnSelectListener {
         void onClick(int position);
     }
 
-    public interface ReselectListener {
+    public interface OnReselectListener {
         void onReselect(int position);
     }
 }
