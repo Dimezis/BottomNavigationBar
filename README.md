@@ -1,12 +1,35 @@
 # BottomNavigationBar
 Simple Bottom Navigation Bar for Android.
 
-## TODO
-1) Finish stuff
+![alt tag](https://github.com/Dimezis/BottomNavigationBar/blob/master/BottomBar.png)
 
-2) Describe lib
+![alt tag](https://github.com/Dimezis/BottomNavigationBar/blob/master/BottomBar.gif)
 
-3) Make gif
+## How to use it
+```XML
+  <com.eightbitlab.bottomnavigationbar.BottomNavigationBar
+      android:id="@+id/bottom_bar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/colorPrimary"
+      app:activeTabColor="@android:color/white"
+      app:inactiveTabColor="@color/bottomBarDefaultTextColor"/>
+```
+
+```Java
+  BottomBarItem item = new BottomBarItem(R.drawable.test_icon, R.string.title);
+
+  bottomNavigationBar.addTab(item);
+```
+
+```Java
+  bottomBar.setOnSelectListener(new BottomNavigationBar.OnSelectListener() {
+      @Override
+      public void onSelect(int position) {
+          doStuff(position);
+      }
+  });
+```
 
 ## Why is it better than library X?
 1) Tabs without titles are supported
@@ -19,7 +42,9 @@ Simple Bottom Navigation Bar for Android.
 
 5) Smooth native animations, no alpha or requestLayout() calls
 
-6) It's tiny. Literally ~10 times smaller than some average bottom bar lib
+6) Properly scales to any height
+
+7) It's tiny. Literally ~10 times smaller than some average bottom bar lib
 
 ## Why is it worse than library X?
 1) There's only a single behavior - fixed tabs. No shifting mode, no dynamic color change of bottom bar
