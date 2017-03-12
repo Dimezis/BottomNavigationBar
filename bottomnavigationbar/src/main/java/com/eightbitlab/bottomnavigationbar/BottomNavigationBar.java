@@ -33,7 +33,7 @@ public class BottomNavigationBar extends LinearLayout {
 
     private OnSelectListener onSelectListener = new OnSelectListener() {
         @Override
-        public void onClick(int position) {
+        public void onSelect(int position) {
         }
     };
     private OnReselectListener onReselectListener = new OnReselectListener() {
@@ -97,7 +97,7 @@ public class BottomNavigationBar extends LinearLayout {
     public void selectTabAndTriggerListener(int position, boolean animate) {
         selectTab(position, animate);
         if (position != selectedPosition) {
-            onSelectListener.onClick(position);
+            onSelectListener.onSelect(position);
         } else {
             onReselectListener.onReselect(position);
         }
@@ -133,7 +133,7 @@ public class BottomNavigationBar extends LinearLayout {
         return this;
     }
 
-    public void setOnTabClickListener(@NonNull OnSelectListener listener) {
+    public void setOnSelectListener(@NonNull OnSelectListener listener) {
         onSelectListener = listener;
     }
 
@@ -152,7 +152,7 @@ public class BottomNavigationBar extends LinearLayout {
                     return;
                 }
                 selectTab(position, true);
-                onSelectListener.onClick(position);
+                onSelectListener.onSelect(position);
             }
         });
         return tab;
@@ -177,7 +177,7 @@ public class BottomNavigationBar extends LinearLayout {
         super.onLayout(changed, l, t, r, b);
         getCurrent().select(false);
         if (shouldTriggerListenerOnLayout) {
-            onSelectListener.onClick(selectedPosition);
+            onSelectListener.onSelect(selectedPosition);
         }
     }
 
@@ -206,7 +206,7 @@ public class BottomNavigationBar extends LinearLayout {
     }
 
     public interface OnSelectListener {
-        void onClick(int position);
+        void onSelect(int position);
     }
 
     public interface OnReselectListener {
