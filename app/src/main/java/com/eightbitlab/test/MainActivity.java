@@ -26,10 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupBottomBar(@NonNull final TextView textView) {
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_bar);
 
-        BottomBarItem item = BottomBarItem.builder()
-                .iconId(R.drawable.test_icon)
-                .title(R.string.title)
-                .build();
+        BottomBarItem item = new BottomBarItem(R.drawable.test_icon, R.string.title);
 
         bottomNavigationBar
                 .addTab(item)
@@ -44,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //only for translucent system navbar
         if (atLeastKitkat() && isInPortrait()) {
+            //if your bottom bar has fixed height
+            //you'll need to increase its height as well
             bottomNavigationBar.setPadding(0, 0, 0, getSystemNavigationBarHeight());
         }
     }
