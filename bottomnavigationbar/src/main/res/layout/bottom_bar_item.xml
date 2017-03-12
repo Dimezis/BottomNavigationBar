@@ -19,7 +19,6 @@
         android:id="@+id/tab_icon"
         android:layout_width="@dimen/bottom_bar_icon_size"
         android:layout_height="@dimen/bottom_bar_icon_size"
-        android:adjustViewBounds="true"
         tools:src="@drawable/test_icon" />
 
     <TextView
@@ -28,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/bottom_bar_title_top_margin"
         android:textSize="@dimen/bottom_bar_title_inactive_font_size"
-        android:ellipsize="end"
         android:maxLines="1"
         android:includeFontPadding="false"
         tools:text="Item title" />
