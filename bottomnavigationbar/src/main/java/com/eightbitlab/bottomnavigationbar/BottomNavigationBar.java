@@ -175,6 +175,9 @@ public class BottomNavigationBar extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
+        if (tabs.size() == 0) {
+            return;
+        }
         getCurrent().select(false);
         if (shouldTriggerListenerOnLayout) {
             onSelectListener.onSelect(selectedPosition);
