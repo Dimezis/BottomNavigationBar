@@ -5,6 +5,11 @@ Simple Bottom Navigation Bar for Android.
 
 ![alt tag](https://github.com/Dimezis/BottomNavigationBar/blob/master/BottomBar.gif)
 
+## TODO
+1) Publish
+
+2) Fix shadow on colors different than white
+
 ## How to use it
 ```XML
   <com.eightbitlab.bottomnavigationbar.BottomNavigationBar
