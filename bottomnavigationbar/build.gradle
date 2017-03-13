@@ -9,10 +9,8 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,3 +27,30 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
     testCompile 'junit:junit:4.12'
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'BottomNavigationBar'
+
+    publishedGroupId = 'com.eightbitlab'
+    libraryName = 'BottomnaNigationBar'
+    artifact = 'bottomnavigationbar'
+
+    libraryDescription = 'Simple Bottom Navigation Bar for Android'
+
+    siteUrl = 'https://github.com/Dimezis/BottomNavigationBar'
+    gitUrl = 'https://github.com/Dimezis/BottomNavigationBar.git'
+
+    libraryVersion = '0.9.0'
+
+    developerId = 'dimezis'
+    developerName = 'Dmytro Saviuk'
+    developerEmail = 'Dmitry.savyuk@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: 'https://raw.githubusercontent.com/Dimezis/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/Dimezis/JCenter/master/bintrayv1.gradle'
