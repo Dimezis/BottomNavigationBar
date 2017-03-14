@@ -78,8 +78,9 @@ public class BottomNavigationBar extends LinearLayout {
 
     /**
      * Selects tab, not triggering listener
+     *
      * @param position position to select
-     * @param animate indicates wheter selection should  be animated
+     * @param animate  indicates wheter selection should  be animated
      */
     public void selectTab(int position, boolean animate) {
         if (position != selectedPosition) {
@@ -91,8 +92,9 @@ public class BottomNavigationBar extends LinearLayout {
 
     /**
      * Selects tab, triggering listener
+     *
      * @param position position to select
-     * @param animate indicates wheter selection should  be animated
+     * @param animate  indicates wheter selection should  be animated
      */
     public void selectTabAndTriggerListener(int position, boolean animate) {
         selectTab(position, animate);
@@ -106,6 +108,7 @@ public class BottomNavigationBar extends LinearLayout {
     /**
      * Enables or disables automatic invocation of click listener during layout.
      * Disabled by default.
+     *
      * @param shouldTrigger indicates whether selection listener should be triggered
      */
     public void setTriggerListenerOnLayout(boolean shouldTrigger) {
@@ -167,7 +170,7 @@ public class BottomNavigationBar extends LinearLayout {
             setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.white));
         }
 
-        if (isLollipop()) {
+        if (atLeastLollipop()) {
             setOutlineProvider(ViewOutlineProvider.BOUNDS);
         }
     }
@@ -204,7 +207,7 @@ public class BottomNavigationBar extends LinearLayout {
         return ss;
     }
 
-    private boolean isLollipop() {
+    private boolean atLeastLollipop() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
