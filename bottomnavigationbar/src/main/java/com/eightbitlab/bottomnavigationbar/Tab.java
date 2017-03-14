@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,8 +38,7 @@ class Tab {
         inactiveTopMargin = getSizeInPx(R.dimen.bottom_bar_icon_top_margin_inactive);
         this.activeColor = activeColor;
         this.inactiveColor = inactiveColor;
-        //wrapped for tinting
-        iconDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, item.icon)).mutate();
+        iconDrawable = item.getIconDrawable(context);
 
         setupIcon(icon);
         setupTitle();
@@ -78,10 +76,10 @@ class Tab {
     }
 
     private void setupTitle() {
-        if (item.title == 0) {
+        if (item.getTitle() == 0) {
             title.setVisibility(GONE);
         } else {
-            title.setText(item.title);
+            title.setText(item.getTitle());
         }
         title.setTextColor(inactiveColor);
     }
