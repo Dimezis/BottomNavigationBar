@@ -32,7 +32,7 @@ Simple Bottom Navigation Bar for Android.
 ```
 
 ## Gradle
-`compile 'com.eightbitlab:bottomnavigationbar:0.9.0'`
+`compile 'com.eightbitlab:bottomnavigationbar:0.9.1'`
 
 ## Why is it better than library X?
 1) Tabs without titles are supported
