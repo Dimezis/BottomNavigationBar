@@ -5,11 +5,6 @@ Simple Bottom Navigation Bar for Android.
 
 ![alt tag](https://github.com/Dimezis/BottomNavigationBar/blob/master/BottomBar.gif)
 
-## TODO
-1) Publish
-
-2) Fix shadow on colors different than white
-
 ## How to use it
 ```XML
   <com.eightbitlab.bottomnavigationbar.BottomNavigationBar
@@ -36,6 +31,9 @@ Simple Bottom Navigation Bar for Android.
   });
 ```
 
+## Gradle
+`compile 'com.eightbitlab:bottomnavigationbar:0.9.0'`
+
 ## Why is it better than library X?
 1) Tabs without titles are supported
 
@@ -49,7 +47,7 @@ Simple Bottom Navigation Bar for Android.
 
 6) Properly scales to any height
 
-7) It's tiny. Literally ~10 times smaller than some average bottom bar lib
+7) It's tiny. Much smaller than some average bottom bar lib
 
 ## Why is it worse than library X?
 1) There's only a single behavior - fixed tabs. No shifting mode, no dynamic color change of bottom bar
