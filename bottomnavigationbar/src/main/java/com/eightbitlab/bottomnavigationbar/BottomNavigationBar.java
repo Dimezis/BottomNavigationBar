@@ -80,7 +80,7 @@ public class BottomNavigationBar extends LinearLayout {
      * Selects tab, not triggering listener
      *
      * @param position position to select
-     * @param animate  indicates wheter selection should  be animated
+     * @param animate  indicates whether selection should  be animated
      */
     public void selectTab(int position, boolean animate) {
         if (position != selectedPosition) {
@@ -88,6 +88,13 @@ public class BottomNavigationBar extends LinearLayout {
             selectedPosition = position;
             getCurrent().select(animate);
         }
+    }
+
+    /**
+     * @return current selected position
+     */
+    public int getSelectedPosition() {
+        return selectedPosition;
     }
 
     /**
