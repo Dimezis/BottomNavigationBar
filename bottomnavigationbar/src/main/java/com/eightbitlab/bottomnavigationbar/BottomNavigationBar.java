@@ -104,12 +104,12 @@ public class BottomNavigationBar extends LinearLayout {
      * @param animate  indicates wheter selection should  be animated
      */
     public void selectTabAndTriggerListener(int position, boolean animate) {
-        selectTab(position, animate);
         if (position != selectedPosition) {
             onSelectListener.onSelect(position);
         } else {
             onReselectListener.onReselect(position);
         }
+        selectTab(position, animate);
     }
 
     /**

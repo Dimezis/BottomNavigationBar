@@ -41,7 +41,7 @@ ext {
     siteUrl = 'https://github.com/Dimezis/BottomNavigationBar'
     gitUrl = 'https://github.com/Dimezis/BottomNavigationBar.git'
 
-    libraryVersion = '0.9.0'
+    libraryVersion = '0.9.3'
 
     developerId = 'dimezis'
     developerName = 'Dmytro Saviuk'
