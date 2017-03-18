@@ -1,6 +1,5 @@
 package com.eightbitlab.bottomnavigationbar;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
@@ -52,7 +51,7 @@ public class BottomNavigationBar extends LinearLayout {
 
     public BottomNavigationBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initFromAttributes(context, attrs);
+        setUpElevation(context, attrs);
         initFromCustomAttributes(context, attrs);
         init();
     }
@@ -122,8 +121,11 @@ public class BottomNavigationBar extends LinearLayout {
         shouldTriggerListenerOnLayout = shouldTrigger;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void initFromAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
+    private void setUpElevation(@NonNull Context context, @Nullable AttributeSet attrs) {
+        if (!atLeastLollipop()) {
+            return;
+        }
+
         int[] set = {android.R.attr.elevation};
         TypedArray a = context.obtainStyledAttributes(attrs, set);
 
