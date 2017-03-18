@@ -19,7 +19,7 @@
         android:id="@+id/tab_icon"
         android:layout_width="@dimen/bottom_bar_icon_size"
         android:layout_height="@dimen/bottom_bar_icon_size"
-        tools:src="@drawable/test_icon" />
+        tools:src="@drawable/bottom_bar_default_icon" />
 
     <TextView
         android:id="@+id/tab_title"

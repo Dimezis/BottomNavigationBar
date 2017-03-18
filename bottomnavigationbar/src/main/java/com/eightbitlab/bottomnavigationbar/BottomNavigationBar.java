@@ -54,6 +54,15 @@ public class BottomNavigationBar extends LinearLayout {
         setUpElevation(context, attrs);
         initFromCustomAttributes(context, attrs);
         init();
+        createStubForEditMode();
+    }
+
+    private void createStubForEditMode() {
+        if (isInEditMode()) {
+            for (int i = 0; i < 4; i++) {
+                addTab(new BottomBarItem(R.drawable.bottom_bar_default_icon));
+            }
+        }
     }
 
     private void initFromCustomAttributes(@NonNull Context context, @NonNull AttributeSet attrs) {

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupBottomBar(@NonNull final TextView textView) {
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_bar);
 
-        BottomBarItem item = new BottomBarItem(R.drawable.test_icon, R.string.title);
+        BottomBarItem item = new BottomBarItem(R.drawable.bottom_bar_default_icon, R.string.title);
 
         bottomNavigationBar
                 .addTab(item)
