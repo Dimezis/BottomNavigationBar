@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="BottomBarItem">
-        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:background">@null</item>
     </style>
 </resources>
