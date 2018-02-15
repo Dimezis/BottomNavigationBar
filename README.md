@@ -33,7 +33,7 @@ Simple Bottom Navigation Bar for Android.
 
 ## Gradle
 ```Groovy
-compile 'com.eightbitlab:bottomnavigationbar:0.9.5'
+implementation 'com.eightbitlab:bottomnavigationbar:0.9.5'
 ```
 
 ## Why is it better than library X?
