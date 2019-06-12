@@ -2,10 +2,12 @@ package com.eightbitlab.bottomnavigationbar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -160,6 +162,18 @@ public class BottomNavigationBar extends LinearLayout {
 
     public void setOnReselectListener(@NonNull OnReselectListener listener) {
         onReselectListener = listener;
+    }
+
+    public void showBadge(int position, @NonNull Drawable badge) {
+        tabs.get(position).showBadge(badge);
+    }
+
+    public void showBadge(int position, @DrawableRes int badgeRes) {
+        showBadge(position, ContextCompat.getDrawable(getContext(), badgeRes));
+    }
+
+    public void hideBadge(int position) {
+        tabs.get(position).hideBadge();
     }
 
     @NonNull

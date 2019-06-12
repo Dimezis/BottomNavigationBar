@@ -2,6 +2,7 @@ package com.eightbitlab.bottomnavigationbar;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ class Tab {
     private final View root;
     private final TextView title;
     private final Context context;
+    private final ImageView icon;
 
     private final int activeTopMargin;
     private final int inactiveTopMargin;
@@ -32,7 +34,7 @@ class Tab {
         this.root = root;
         context = root.getContext();
         title = (TextView) root.findViewById(R.id.tab_title);
-        ImageView icon = (ImageView) root.findViewById(R.id.tab_icon);
+        icon = (ImageView) root.findViewById(R.id.tab_icon);
 
         activeTopMargin = getSizeInPx(R.dimen.bottom_bar_icon_top_margin_active);
         inactiveTopMargin = getSizeInPx(R.dimen.bottom_bar_icon_top_margin_inactive);
@@ -40,11 +42,11 @@ class Tab {
         this.inactiveColor = inactiveColor;
         iconDrawable = item.getIconDrawable(context);
 
-        setupIcon(icon);
+        setupIcon();
         setupTitle();
     }
 
-    private void setupIcon(@NonNull ImageView icon) {
+    private void setupIcon() {
         DrawableCompat.setTint(iconDrawable, inactiveColor);
         icon.setImageDrawable(iconDrawable);
     }
@@ -56,6 +58,7 @@ class Tab {
     void select(boolean animate) {
         title.setTextColor(activeColor);
         DrawableCompat.setTint(iconDrawable, activeColor);
+        icon.getDrawable().invalidateSelf();
 
         if (animate) {
             animateTranslationY(root, activeTopMargin);
@@ -67,6 +70,7 @@ class Tab {
     void deselect(boolean animate) {
         title.setTextColor(inactiveColor);
         DrawableCompat.setTint(iconDrawable, inactiveColor);
+        icon.getDrawable().invalidateSelf();
 
         if (animate) {
             animateTranslationY(root, inactiveTopMargin);
@@ -82,5 +86,21 @@ class Tab {
             title.setText(item.getTitle());
         }
         title.setTextColor(inactiveColor);
+    }
+
+    void showBadge(@NonNull Drawable badge) {
+        LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{iconDrawable, badge});
+        layerDrawable.setLayerInset(
+                1,
+                iconDrawable.getIntrinsicWidth(),
+                0,
+                0,
+                iconDrawable.getIntrinsicHeight()
+        );
+        icon.setImageDrawable(layerDrawable);
+    }
+
+    void hideBadge() {
+        icon.setImageDrawable(iconDrawable);
     }
 }
