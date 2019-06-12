@@ -12,17 +12,17 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "bottomnavigationbar/build.gradle" }}
       - run:
           name: Download Dependencies
-          command: sh gradlew :bottomnavigationbar:androidDependencies
+          command: ./gradlew :bottomnavigationbar:androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "bottomnavigationbar/build.gradle" }}
       - run:
           name: Build
-          command: sh gradlew :bottomnavigationbar:assembleRelease
+          command: ./gradlew :bottomnavigationbar:assembleRelease
       - run:
           name: Bintray Upload
-          command: sh gradlew :bottomnavigationbar:bintrayUpload
+          command: ./gradlew :bottomnavigationbar:bintrayUpload
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: bottomnavigationbar/build/reports
           destination: reports
