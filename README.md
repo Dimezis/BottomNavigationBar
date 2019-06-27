@@ -20,6 +20,9 @@ Simple Bottom Navigation Bar for Android.
   BottomBarItem item = new BottomBarItem(R.drawable.test_icon, R.string.title);
 
   bottomNavigationBar.addTab(item);
+  
+  // Optional badge 
+  bottomNavigationBar.showBadge(position, badge);
 ```
 
 ```Java
@@ -33,7 +36,7 @@ Simple Bottom Navigation Bar for Android.
 
 ## Gradle
 ```Groovy
-compile 'com.eightbitlab:bottomnavigationbar:0.9.5'
+compile 'com.eightbitlab:bottomnavigationbar:0.9.6'
 ```
 
 ## Why is it better than library X?
@@ -56,4 +59,4 @@ compile 'com.eightbitlab:bottomnavigationbar:0.9.5'
 
 2) No special tablet mode
 
-3) No badges with counters
+3) Currently no animation customization
